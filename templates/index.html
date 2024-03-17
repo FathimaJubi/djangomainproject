@@ -1,0 +1,213 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+   
+   
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">ZIVA COLLECTIONS</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="#home">Home</a>
+              </li>
+             
+              <li class="nav-item">
+                <a class="nav-link" href="#collection">Collection</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'shop' %}">Shop</a>
+              </li>  
+                
+            </ul>
+            <ul class="navbar-nav">
+              {% if user.is_authenticated %}
+              
+             
+              
+              <li><a class="nav-link" href="{% url 'viewcart' %}"><i class='bx bx-cart-alt'></i>cart</a></li>
+              <li><a class="nav-link" href="{% url 'userlogout' %}"><i class='bx bxs-log-out'></i>Log-out</a></li>
+              {% else %}
+              <li><a class="nav-link" href="{% url 'log' %}"><i class='bx bxs-log-in'></i>Log-in</a></li>
+              <li><a class="nav-link" href="{% url 'register' %}"><i class='bx bx-log-in-circle' ></i></i>Sign Up</a></li>
+              {% endif %}
+            </ul>
+     
+                
+          </div>
+        </div>
+    </nav>
+     <!-- Carousel -->
+    <div id="home" class="carousel slide" data-bs-ride="carousel">
+
+        <!-- Indicators/dots -->
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+          <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+          <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+        </div>
+        
+        <!-- The slideshow/carousel -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{% static 'image/dd.jpg' %}" alt="Los Angeles" class="d-block w-100" style="width:100%">
+            <div class="carousel-caption">
+              <h5>BLACK FRIDAY...60% OFF</h5>
+              <p>Enjoy with us...Use code welcome and get $250 off on your first purchase...!!</p>
+            </div> 
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'image/ee.jpg' %}" alt="Chicago" class="d-block w-100" style="width:100%">
+            <div class="carousel-caption">
+              <h5 style="font-weight:800">AUTUMN/WINTER'23</h5>
+              <p>Wrap yourself in..!!</p>
+            </div> 
+          </div>
+          <div class="carousel-item"> 
+            <img src="{% static 'image/cc.jpg' %}" alt="New York" class="d-block w-100" style="width:100%">
+            <div class="carousel-caption">
+              <h5>HURRY UP...GRAB YOURS..</h5>
+              <p>VACATION WEARS THAT TAKES YOU PLACES..!!!</p>
+            </div> 
+          </div>
+        </div>
+        
+        <!-- Left and right controls/icons -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#home" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#home" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+
+    <!--collection-->
+    <section id="collection" class="collection section-padding">
+        <div class="container">
+            <h2>Trending collections</h2>
+            
+            <div class="row">
+              {% for p in products %}
+              <div class="col-lg-4 col-md-6 col-12 mb-3">
+                <div class="card">
+                <img class="card-img-top" src="{{p.pro_image.url}}" alt="" style="width: 100%;">
+                <div class="card-body">
+                    <h4 class="card-title">{{p.pro_name}}</h4>
+                    <p class="card-text">RS: {{p.pro_price}}</p>
+                    <p class="card-text">
+                      <form method="POST" action="{% url 'cart' p.id %}">
+                        {% csrf_token %}
+                        {% if p.XS %}
+                        <label>
+                            XS:
+                            <input type="radio" name="size" value="XS">
+                        </label>
+                        {% endif %}
+                        {% if p.S %}
+                        <label>
+                            S:
+                            <input type="radio" name="size" value="S">
+                        </label>
+                        {% endif %}
+                        {% if p.M %}
+                        <label>
+                            M:
+                            <input type="radio" name="size" value="M">
+                        </label>   
+                            
+                        {% endif %}
+                        {% if p.L %}
+                        <label>
+                            L:
+                            <input type="radio" name="size" value="L">
+                        </label>   
+                               
+                        {% endif %}
+                        {% if p.XL %}
+                            
+                        <label>
+                            XL:
+                            <input type="radio" name="size" value="XL">
+                        </label>   
+                            
+                        {% endif %}
+                        
+                        <hr>
+                        
+                        <a href="{% url 'cart' p.id %}"><input type="submit" class="btn btn-warning" value="Add to cart"></a>
+                    </form>
+                    </p>
+                    
+                </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          
+    
+        </div>
+    </section>
+    <section class="footer">
+      <div class="footer-box">
+          <h3 style="margin-left :20px;">ZIVA COLLECTIONS</h3>
+          <p>ZIVA is amazing.Every one have to<br> try it.i'am just addicted to the latte<br> coffee,it is just wow..!</p>
+          <div class="social">
+              <a href="#"><i class='bx bxl-facebook' ></i></a>
+              <a href="#"><i class='bx bxl-twitter' ></i></a>
+              <a href="#"><i class='bx bxl-instagram' ></i></a>
+              <a href="#"><i class='bx bxl-tiktok' ></i></a>
+          </div>
+      </div>
+      <div class="footer-box">
+          <h3>Support</h3>
+          <li><a href="#">Product</a></li>
+          <li><a href="#">HELP & Support</a></li>
+          <li><a href="#">Return policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+        
+    
+      </div>
+      <div class="footer-box">
+          <h3>View Guides</h3>
+          <li><a href="#">Features</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Blog posts</a></li>
+          <li><a href="#">Our branches</a></li>
+      </div>
+      <div class="footer-box">
+          <h3>Contact</h3>
+          <div class="contact">
+              <span><i class='bx bxs-map' ></i>250 New York , USA 1001</span>
+              <span><i class='bx bxs-phone' ></i>+1 444 7444</span>
+              <span><i class='bx bxs-envelope' ></i>burger@gmail.com</span>
+          </div>
+      </div>
+    
+    
+    </section>
+
+
+  
+   
+</body>
+</html>

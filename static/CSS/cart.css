@@ -1,0 +1,160 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8; 
+   
+  
+    
+}
+
+h1 {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    color: #333; 
+    margin: 20px 0;
+}
+
+
+
+.card{
+    margin: 20px;
+}
+
+
+
+
+
+
+button {
+    margin: 20px;
+    background-color: #4caf50; 
+    color: #fff;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+   
+}
+
+button:hover {
+    background-color: #45a049; 
+}
+
+
+
+
+
+
+.remove button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.remove a {
+    text-decoration: none;
+    color: #ff0000; /* Set your desired text color */
+}
+
+button a {
+    text-decoration: none;
+    color: #fff;
+}
+
+button a:hover {
+    text-decoration: underline;
+}
+
+.remove-all {
+    margin-top: 20px;
+}
+
+button.remove-all {
+    background-color: #ff0000; /* Set your desired button color */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button.remove-all:hover {
+    background-color: #cc0000; /* Set your desired button hover color */
+}
+
+.footer{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(240px,auto));
+    gap: 18 px;
+   
+    background-color:plum;
+}
+
+.footer-box h2{
+    font-size: 17px;
+    font-weight: 600; 
+    margin-bottom: 10px;
+    margin-left: 20px;
+
+}
+
+.footer-box p{
+    font-size: 15px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+.social{
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+    margin-left: 20px;
+}
+.social a .bx{
+    font-size: 24px;
+    color: #1b1b1b;
+    padding: 10px;
+    background: #edeae3;
+    border-radius: 8px;
+
+}
+
+.social a .bx:hover{
+    background: rgb(181, 49, 71);
+    color: #fff;
+}
+.footer-box h3{
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.footer-box li a{
+    color: #1b1b1b;
+}
+.footer-box li a:hover{
+    color: rgb(181, 49, 71);
+
+}
+.contact{
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+
+}
+.contact span{
+    display: flex;
+    align-items: center;
+}
+
+.contact i{
+    font-size: 20px;
+    margin-right: 16px;
+}
+
+.copyright{
+    padding: 20px;
+    text-align: center;
+    background: #edeae3;
+
+}
+

@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,700;1,300;1,400&display=swap');
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4; /* Set your desired background color */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Ensure the container takes full height of the viewport */
+}
+
+.form {
+    background-color: #fff; /* Set your desired background color for the form */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.form input[type="submit"] {
+    background-color: #4caf50; /* Set your desired button color */
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form input[type="submit"]:hover {
+    background-color: #45a049; /* Set your desired button hover color */
+}

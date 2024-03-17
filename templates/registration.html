@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'CSS/registration.css' %}">
+</head>
+<body>
+   
+    <form name="registrationForm" action="{% url 'register' %}" method="POST" onsubmit="return validateForm()">
+        {% csrf_token %}
+        <h1>REGISTRATION FORM</h1>
+        <label>FIRST NAME:</label><br>
+        <input type="text" name="fname"><br>
+        <label>LAST NAME:</label><br>
+        <input type="text" name="lname"><br>
+        <label>USER NAME:</label><br>
+        <input type="text" name="usname"><br>
+        <label>DATE OF BIRTH :</label><br>
+        <input type="date" name="age"><br>
+        <label>ADRESS</label><br>
+        <textarea type="text" name="adress"></textarea><br>
+        <label>MOBILE NO:</label><br>
+        <input type="number" name="phone"><br>  
+        <label>Email :</label><br>
+        <input type="email"  name="names"><br>
+        <label>SELECT GENDER :</label><br>
+    
+        <input id='male' type="radio" name="gender" value="male">
+        <label for="male">MALE</label>
+        
+        <input id="female" type="radio" name="gender" value="female">
+        <label for="female">FEMALE</label>
+        
+        <input id=other type="radio" name="gender" value="other">
+        <label for="other">OTHER</label><br>
+        <label>SELECT DISTRICT:</label><br>
+        <select name="district">
+            <option>Malappuram</option>
+            <option>Palakkad</option>
+            <option>Ernakulam</option>
+            <option>Kozhikode</option>
+            <option>Thrissur</option>
+        </select><br>
+        <label>PASSWORD:</label><br>
+        <input type="password" name="password"><br>
+        <label>CONFIRM PASSWORD:</label><br>
+        <input type="password" name="cpassword"><br>
+
+        <input type="submit">
+
+
+    </form>
+
+    <script>
+        function validateForm() {
+            // Get form inputs
+            var firstName = document.forms["registrationForm"]["fname"].value;
+            var lastName = document.forms["registrationForm"]["lname"].value;
+            var userName = document.forms["registrationForm"]["usname"].value;
+            var age = document.forms["registrationForm"]["age"].value;
+            var address = document.forms["registrationForm"]["adress"].value;
+            var phone = document.forms["registrationForm"]["phone"].value;
+            var email = document.forms["registrationForm"]["names"].value;
+            var gender = document.forms["registrationForm"]["gender"].value;
+            var district = document.forms["registrationForm"]["district"].value;
+            var password = document.forms["registrationForm"]["password"].value;
+            var confirmPassword = document.forms["registrationForm"]["cpassword"].value;
+
+            // Perform validation
+            if (firstName === "" || lastName === "" || userName === "" || age === "" || address === "" ||
+                phone === "" || email === "" || gender === "" || district === "" || password === "" || confirmPassword === "") {
+                alert("All fields must be filled out");
+                return false;
+            }
+
+            // You can add more specific validation rules here based on your requirements
+
+            // Check if password and confirm password match
+            if (password !== confirmPassword) {
+                alert("Password and Confirm Password do not match");
+                return false;
+            }
+
+            // Additional validation rules can be added as needed
+
+            return true; // If all validations pass
+        }
+    </script>
+</body>
+</html>
